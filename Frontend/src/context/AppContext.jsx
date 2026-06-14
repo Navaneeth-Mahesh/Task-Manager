@@ -33,19 +33,22 @@ export function AppProvider({ children }) {
   }, [isAuthenticated, tasks.length])
 
   const login = useCallback(async (email, password) => {
-    const res = await authService.login(email, password)
-    setCurrentUser(res.data.user)
-    setIsAuthenticated(true)
-    const tasksRes = await taskService.list()
-    setTasks(tasksRes.data || [])
-    return res
+  const res = await authService.login(email, password)
+  const user = res.user || res.data?.user || res
+  setCurrentUser(user)
+  setIsAuthenticated(true)
+  const tasksRes = await taskService.list()
+  setTasks(tasksRes.data || tasksRes.tasks || [])
+  return res
   }, [])
 
+
   const register = useCallback(async (fullname, email, password) => {
-    const res = await authService.register(fullname, email, password)
-    setCurrentUser(res.data.user)
-    setIsAuthenticated(true)
-    return res
+  const res = await authService.register(fullname, email, password)
+  const user = res.user || res.data?.user || res
+  setCurrentUser(user)
+  setIsAuthenticated(true)
+  return res
   }, [])
 
   const logout = useCallback(async () => {
@@ -57,24 +60,34 @@ export function AppProvider({ children }) {
 
   const addTask = useCallback(async (payload) => {
     const res = await taskService.create(payload)
-    setTasks(prev => [res.data.task, ...prev])
-    return res.data.task
+    const newTask =
+      res?.data?.task ||
+      res?.task ||
+      res?.data ||
+      res
+    if (!newTask || (!newTask._id && !newTask.id)) {
+      console.error("Invalid task response:", res)
+      return
+    }
+    setTasks(prev => [newTask, ...prev])
+    return newTask
   }, [])
 
   const updateTask = useCallback(async (id, payload) => {
-    const res = await taskService.update(id, payload)
-    setTasks(prev => prev.map(t => t._id === id ? res.data.task : t))
-    return res.data.task
+  const res = await taskService.update(id, payload)
+  const updatedTask = res.task || res.data?.task || res
+  setTasks(prev => prev.map(t => (t._id || t.id) === id ? updatedTask : t))
+  return updatedTask
   }, [])
 
   const deleteTask = useCallback(async (id) => {
     await taskService.delete(id)
-    setTasks(prev => prev.filter(t => t._id !== id))
+    setTasks(prev => prev.filter(t => (t._id  || t.id) !== id))
   }, [])
 
   const moveTask = useCallback(async (id, newStatus) => {
     await taskService.updateStatus(id, newStatus)
-    setTasks(prev => prev.map(t => t._id === id ? { ...t, status: newStatus } : t))
+    setTasks(prev => prev.map(t => (t._id  || t.id) === id ? { ...t, status: newStatus } : t))
   }, [])
 
   if (loading) {

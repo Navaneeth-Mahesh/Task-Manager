@@ -312,7 +312,7 @@ export default function Dashboard() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {recentTasks.map((task, i) => (
               <TaskCard
-                key={task._id}
+                key={task._id || task.id}
                 task={task}
                 index={i}
                 onEdit={() => {}}

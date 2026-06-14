@@ -38,7 +38,7 @@ export function TaskModal({ isOpen, onClose, task = null }) {
   tags: form.tags.split(',').map(t => t.trim()).filter(Boolean),
   progress: form.progress || 0,
 }
-    if (isEdit) updateTask(task.id, payload)
+    if (isEdit) updateTask(task._id || task.id, payload)
     else addTask(payload)
     onClose()
   }

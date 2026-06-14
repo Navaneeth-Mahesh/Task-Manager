@@ -14,10 +14,20 @@ const emit = (req, event, payload) => {
 
 // ── POST /api/tasks ───────────────────────────────────────────────────────────
 export const createTask = asyncHandler(async (req, res) => {
-  const task = await Task.create({
+  // Normalize optional fields coming from the frontend.
+  // Frontend may send '' for optional fields.
+  const normalized = {
     ...req.body,
+  }
+  if (normalized.dueDate === '' || normalized.dueDate === null) normalized.dueDate = null
+  if (normalized.assignedTo === '' || normalized.assignedTo === null) normalized.assignedTo = null
+  if (normalized.tags === '' || normalized.tags === undefined) normalized.tags = []
+
+  const task = await Task.create({
+    ...normalized,
     createdBy: req.user._id,
   })
+
 
   await task.populate([
     { path: 'createdBy', select: 'fullname email avatar' },
@@ -122,7 +132,7 @@ export const updateTaskStatus = asyncHandler(async (req, res) => {
   task.status = status
   await task.save()
 
-  emit(req, SOCKET_EVENTS.TASK_UPDATED, { task: { _id: task._id, status: task.status } })
+  emit(req, SOCKET_EVENTS.TASK_UPDATED, { task: { _id: task._id || task.id, status: task.status } })
   sendSuccess(res, { task }, 'Task status updated.')
 })
 

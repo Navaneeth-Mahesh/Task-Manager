@@ -21,7 +21,7 @@ function KanbanColumn({ column, tasks, onEdit, onDelete, onView }) {
       <div className="space-y-3 min-h-[200px] p-3 rounded-2xl bg-bg-secondary border border-border">
         <AnimatePresence>
           {tasks.map((task, i) => (
-            <TaskCard key={task._id} task={task} index={i} onEdit={onEdit} onDelete={onDelete} onView={onView} />
+            <TaskCard key={task._id || task.id} task={task} index={i} onEdit={onEdit} onDelete={onDelete} onView={onView} />
           ))}
         </AnimatePresence>
         {tasks.length === 0 && (
@@ -114,7 +114,7 @@ export default function Tasks() {
             <AnimatePresence mode="popLayout">
               {filtered.map((task, i) => (
                 <TaskCard
-                  key={task._id}
+                  key={task._id || task.id}
                   task={task}
                   index={i}
                   onEdit={t => setEditTask(t)}

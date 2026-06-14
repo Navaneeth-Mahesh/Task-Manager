@@ -44,7 +44,7 @@ describe('Tasks — POST /api/tasks', () => {
     expect(res.status).toBe(201)
     expect(res.body.success).toBe(true)
     expect(res.body.data.task.title).toBe('Test Task')
-    taskId = res.body.data.task._id
+    taskId = res.body.data.task._id || task.id
   })
 
   it('should reject task without title', async () => {
@@ -105,7 +105,7 @@ describe('Tasks — GET /api/tasks/:id', () => {
       .get(`/api/tasks/${taskId}`)
       .set('Cookie', cookie)
     expect(res.status).toBe(200)
-    expect(res.body.data.task._id).toBe(taskId)
+    expect(res.body.data.task._id || task.id).toBe(taskId)
   })
 
   it('should return 404 for non-existent task', async () => {

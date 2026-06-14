@@ -25,7 +25,19 @@ router.use(protect)
 router
   .route('/')
   .get(getTasks)
-  .post(createTaskValidator, createTask)
+  .post(
+    (req, res, next) => {
+      // Ensure optional fields are either valid values or omitted.
+      // Frontend sends: dueDate as ISO date string (or ''), assignedTo as user id (or '').
+      if (req.body.dueDate === '' || req.body.dueDate === null) req.body.dueDate = undefined
+      if (req.body.assignedTo === '' || req.body.assignedTo === null) req.body.assignedTo = undefined
+
+      next()
+    },
+    createTaskValidator,
+    createTask
+  )
+
 
 router
   .route('/:id')
