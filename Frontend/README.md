@@ -92,7 +92,7 @@ taskflow/
 │   ├── utils/
 │   │   └── index.js         # cn(), formatDate, getDaysLeft, priority/status configs
 │   │
-│   ├── App.jsx              # BrowserRouter + route definitions + auth guards
+│   ├── App.jsx              # HashRouter + route definitions + auth guards
 │   ├── main.jsx             # React DOM entry point
 │   └── index.css            # Tailwind base + global design-token CSS vars
 │
