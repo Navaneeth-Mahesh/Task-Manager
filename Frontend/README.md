@@ -1,4 +1,4 @@
-# ⚡ TaskFlow — Premium Task Management Application
+TaskFlow — Premium Task Management Application
 
 > Awwwards-quality frontend built with React + Vite · Framer Motion · GSAP · Tailwind CSS
 
@@ -6,13 +6,13 @@
 
 ---
 
-## ✨ Overview
+ Overview
 
 TaskFlow is a production-ready, dark-first Task Management frontend inspired by **Linear**, **Notion**, **Raycast**, and **Arc Browser**. It features cinematic animations, a full Kanban board, analytics charts, team management, and a premium landing page — all built as a modular React application ready to wire up to any backend API.
 
 ---
 
-## 🚀 Tech Stack
+Tech Stack
 
 | Layer | Technology |
 |---|---|
@@ -29,7 +29,7 @@ TaskFlow is a production-ready, dark-first Task Management frontend inspired by 
 
 ---
 
-## 📁 Folder Structure
+Folder Structure
 
 ```
 taskflow/
@@ -154,7 +154,7 @@ npm run preview   # preview the production build locally
 
 ---
 
-## 🔐 Authentication Flow
+ Authentication Flow
 
 ```
 / (Landing)
@@ -169,7 +169,7 @@ All `/dashboard`, `/tasks`, `/calendar`, `/analytics`, `/team`, `/settings` rout
 
 ---
 
-## 🎨 Design System
+ Design System
 
 ### Color palette
 
@@ -209,7 +209,7 @@ All `/dashboard`, `/tasks`, `/calendar`, `/analytics`, `/team`, `/settings` rout
 
 ---
 
-## 🏗️ Connecting to Your Backend
+ Connecting to Your Backend
 
 1. Update `VITE_API_URL` in `.env`
 2. Open `src/services/api.js` — every endpoint is documented with expected request/response shape
@@ -234,8 +234,7 @@ const addTask = async (payload) => {
 ```
 
 ---
-
-## 🎬 Animation Architecture
+Animation Architecture
 
 | System | Used for |
 |---|---|
@@ -260,7 +259,7 @@ import { CARD_HOVER, STAGGER_CONTAINER, STAGGER_ITEM } from '@/animations/varian
 
 ---
 
-## 📱 Responsive Breakpoints
+Responsive Breakpoints
 
 | Name | Width | Adjustments |
 |---|---|---|
@@ -271,7 +270,7 @@ import { CARD_HOVER, STAGGER_CONTAINER, STAGGER_ITEM } from '@/animations/varian
 
 ---
 
-## 📈 Roadmap (Backend integration phases)
+ Roadmap (Backend integration phases)
 
 - [ ] Phase 2 — Auth API (JWT, refresh tokens)  
 - [ ] Phase 3 — Task CRUD endpoints  
@@ -282,7 +281,7 @@ import { CARD_HOVER, STAGGER_CONTAINER, STAGGER_ITEM } from '@/animations/varian
 
 ---
 
-## 🤝 Contributing
+ Contributing
 
 1. Fork the repo
 2. Create a feature branch: `git checkout -b feat/your-feature`
@@ -291,6 +290,6 @@ import { CARD_HOVER, STAGGER_CONTAINER, STAGGER_ITEM } from '@/animations/varian
 
 ---
 
-## 📄 License
+License
 
 MIT © 2025 Navaneeth — built as a flagship portfolio project.
