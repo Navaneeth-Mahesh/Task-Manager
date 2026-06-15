@@ -391,7 +391,7 @@ export default function Landing() {
             </div>
             <span className="font-display font-bold text-white text-sm">TaskFlow</span>
           </div>
-          <p className="text-xs text-text-dim">© 2025 TaskFlow. Built with precision.</p>
+          <p className="text-xs text-text-dim">© 2026 TaskFlow. Built with precision.</p>
           <div className="flex items-center gap-4 text-text-dim">
             <a href="#" className="hover:text-white transition-colors"><RiTwitterXLine size={16} /></a>
             <a href="#" className="hover:text-white transition-colors"><RiGithubLine size={16} /></a>
